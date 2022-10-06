@@ -1,0 +1,1612 @@
+/*fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+/******/
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+*{
+    scrollbar-width: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+:root {
+    --emailMargin: 0px;
+}
+
+@keyframes error{
+    5% {
+      margin-left: calc(var(--emailMargin) - 8px);
+      margin-right: calc(var(--emailMargin) + 8px);
+    }
+    10% {
+        margin-left: calc(var(--emailMargin) + 7px);
+        margin-right: calc(var(--emailMargin) - 7px);
+    }
+    20% {
+        margin-left: calc(var(--emailMargin) - 6px);
+        margin-right: calc(var(--emailMargin) + 6px);
+    }
+    30% {
+        margin-left: calc(var(--emailMargin) + 5px);
+        margin-right: calc(var(--emailMargin) - 5px);
+    }
+    40% {
+        margin-left: calc(var(--emailMargin) - 4px);
+        margin-right: calc(var(--emailMargin) + 4px);
+    }
+    50% {
+        margin-left: calc(var(--emailMargin) + 3px);
+        margin-right: calc(var(--emailMargin) - 3px);
+    }
+    60% {
+        margin-left: calc(var(--emailMargin) - 2px);
+        margin-right: calc(var(--emailMargin) + 2px);
+    }
+    70% {
+        margin-left: calc(var(--emailMargin) + 1px);
+        margin-right: calc(var(--emailMargin) - 1px);
+    }
+    80% {
+        margin-left: var(--emailMargin);
+        margin-right: var(--emailMargin);
+    }
+  }
+
+@keyframes pulse {
+	0%{
+		transform: scale(0.97);
+		box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+	}
+	70%{
+		transform: scale(1);
+		box-shadow: 0 0 0 0.8em rgba(255, 255, 255, 0);
+	}
+	100%{
+		transform: scale(0.97);
+		box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+	}
+}
+
+@keyframes pulseGreen {
+	0%{
+		transform: scale(0.97);
+		box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7);
+	}
+	70%{
+		transform: scale(1);
+		box-shadow: 0 0 0 0.8em rgba(40, 167, 69, 0.4);
+	}
+	100%{
+		transform: scale(0.97);
+		box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+	}
+}
+
+@keyframes pulseRed {
+	0%{
+		transform: scale(0.97);
+		box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7);
+	}
+	70%{
+		transform: scale(1);
+		box-shadow: 0 0 0 0.8em rgba(220, 53, 69, 0.4);
+	}
+	100%{
+		transform: scale(0.97);
+		box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
+	}
+}
+
+@keyframes failed-load {
+    0%{
+      opacity: 0;
+      visibility: visible;
+      transform: translate(-55%, 0);
+    }
+    20%{
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+    100%{
+      opacity: 0;
+      visibility: hidden;
+      transform: translate(-44%, 0);
+    }
+}
+
+@keyframes slide-left {
+    0%{
+        transform: translate(0, 0);
+    }
+    100%{
+        transform: translate(-120%, 0);
+    }
+}
+
+@keyframes slide-in {
+    0%{
+        transform: translate(120%, 0);
+    }
+    100%{
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes slide-out {
+    0%{
+        transform: translate(0, 0);
+    }
+    100%{
+        transform: translate(120%, 0);
+    }
+}
+
+@keyframes slide-right {
+    0%{
+        transform: translate(-120%, 0);
+    }
+    100%{
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: white; }
+}
+
+@keyframes exitButton {
+    0%{
+       transform: rotateX(0deg);
+      }
+   100%{
+       transform: rotateX(360deg);
+      }
+   }
+
+.container-fluid{
+    padding: 0;
+}
+
+/**tooltip**/
+.tooltips{
+    position: relative;
+    display: inline-block;
+}
+
+.tooltips .tooltipstext {
+    visibility: hidden;
+    width: 120px;
+    background: rgba(255, 255, 255, 0);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+  
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    top: 135%;
+    left: 50%;
+    margin-left: -60px;
+  
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.tooltips .tooltipstext::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.3) transparent transparent transparent;
+    transform: rotate(180deg);
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltips:hover .tooltipstext {
+    visibility: visible;
+    opacity: 1;
+}
+/**********/
+
+body{
+    overflow-x: hidden;
+}
+
+.splash-page{
+    width: 100vw;
+    height: 100vh;
+    overflow-y: hidden;
+    color: white;
+}
+
+.logo-banner h1{
+    color: white;
+}
+
+.header{
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    width: 100vw;
+    height: 120px;
+    overflow: hidden;
+}
+
+.nav{
+    height: 100%;
+    position: relative;
+}
+
+.page-links{
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 2em;
+}
+
+.page-links a{
+    background-color: white;
+    text-align: center;
+    margin: 20px;
+    width: 30%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 25px;
+    color: black;
+    transition: all 500ms;
+}
+
+.page-links a:hover{
+    width: 35%;
+    cursor: pointer;
+}
+
+.logo-banner{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    padding-left: 2em;
+}
+
+.logo-banner img{
+    height: 50%;
+}
+
+.registration-form, .login-form{
+    height: 500px;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100vw;
+}
+
+.reg-cover, .log-cover{
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 40%;
+    height: 88%;
+    border-radius: 25px;
+    padding: 25px;
+}
+
+.wrapper{
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 50px;
+}
+
+.tagline{
+    overflow: hidden;
+    border-right: .15em solid white;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .08em;
+    animation: 
+    typing 4s steps(30, end),
+    blink-caret .75s step-end infinite;
+    font-family: 'Montserrat';
+}
+
+.login-form{
+    transform: translate(120%, 0);
+}
+
+.log-cover{
+    height: 50% !important;
+}
+
+.background-images{
+    position: fixed;
+    top: 0;
+    z-index: -2;
+}
+
+.gradient{
+    width: 100vw;
+    height: 100vh;
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,0) 0%, rgba(2,0,36,1) 100%);
+    position: absolute;
+    z-index: 0;
+}
+
+.gradient-home{
+    width: 100vw;
+    height: 100vh;
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,0) 0%, rgba(2,0,36,0.7) 0%);
+    position: absolute;
+    z-index: 0;
+}
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.column{
+flex: 0%;
+padding: 0 0px;
+}
+
+.column img{
+vertical-align: middle;
+width: 100%;
+}
+
+input[type="text"], input[type="email"], input[type="password"], input[type="date"]{
+background-color: transparent;
+border: none;
+border-radius: 0 !important;
+border-bottom: 1px solid white;
+color: white;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="date"]:focus{
+    background-color: transparent;
+    box-shadow: none;
+    border-color: white;
+    color: white;
+}
+
+::placeholder{
+    color: rgba(255,255,255,0.7) !important;
+}
+
+.btn{
+    box-shadow: 0 0 0 0 rgb(255 255 255);
+    transform: scale(1);
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.btn:hover{
+    animation-name: pulse;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    background-color: rgba(255, 255, 255, 1);
+    color: black;
+    border: 1px solid white;
+}
+
+/*error spans*/
+#emailSpan, #nameSpan, #surnameSpan, .passspan, #dateSpan, #LogEmailSpan, #LogPassSpan, #errorSpan{
+    color: white;
+}
+/*************/
+
+/*user reg success*/
+.no-error{
+    width: 40%;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 17%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    opacity: 0;
+    font-size: 2em;
+    z-index: 90;
+    color: white;
+}
+
+.added_animation{
+    animation-name: failed-load;
+    animation-duration: 8s;
+    animation-timing-function:ease-in-out;
+    animation-iteration-count: 1;
+    animation-delay: 1s;
+}
+
+.slide-left{
+    animation-name: slide-left;
+    animation-duration: 4s;
+    animation-timing-function:ease-in-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-delay: 500ms;
+}
+
+.slide-in{
+    animation-name: slide-in;
+    animation-duration: 4s;
+    animation-timing-function:ease-in-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-delay: 500ms;
+}
+/*****************/
+
+/*quick login and register switch*/
+.quick-out{
+    transform: translate(-120%, 0);
+}
+
+.quick-in{
+    transform: translate(0%, 0);
+}
+/*********************************/
+
+/*slide back registration*/
+.slide-right{
+    animation-name: slide-right;
+    animation-duration: 4s;
+    animation-timing-function:ease-in-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-delay: 500ms;
+}
+
+.slide-out{
+    animation-name: slide-out;
+    animation-duration: 4s;
+    animation-timing-function:ease-in-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-delay: 500ms;
+}
+/************************/
+
+/*home page*/
+.add-event-button{
+    width: 4em;
+    height: 4em;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4em;
+    position: fixed;
+    bottom: 2em;
+    left: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation-name: pulse;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    transition: all 1s;
+    z-index: 100;
+}
+
+.edit-event-button{
+    /* width: 4em;
+    height: 4em;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4em;
+    position: fixed;
+    bottom: 2em;
+    left: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation-name: pulse;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    transition: all 1s;
+    z-index: 100; */
+    background-color: white;
+    width: 3.5em;
+    height: 3.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    position: absolute;
+    right: 0;
+    margin-top: 10px;
+    margin-right: 10px;
+    transition: all 1s;
+}
+
+.edit-event-button:hover{
+    animation-name: pulse;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    cursor: pointer;
+}
+
+.edit-event-button i{
+    font-size: 1.5em;
+    color: black;
+}
+
+.add-event-button:hover{
+    animation-play-state: paused;
+    background-color: white;
+    cursor: pointer;
+}
+
+.add-event-button:hover .fa-plus{
+    color: black;
+}
+
+.fa-plus{
+    font-size: 2em;
+    color: white;
+}
+
+.hide{
+    visibility: hidden;
+}
+
+.show{
+    visibility: show;
+}
+
+/*add event form*/
+.add-event-form{
+    color: white;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 99;
+}
+
+#exit{
+    font-size: 2.5em;
+    font-weight: bolder;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 30px;
+    cursor: pointer;
+    animation-name: none;
+}
+
+#exit:hover{
+    animation: exitButton 4s linear infinite;
+}
+
+.add-cover{
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 30%;
+    height: 90%;
+    border-radius: 25px;
+    padding: 25px;
+    z-index: 99;
+    overflow: scroll;
+    scrollbar-width: 0;
+}
+/***************/
+
+/*form controls*/
+textarea.form-control{
+    border-radius: 1px solid white;
+    background-color: transparent;
+    outline: none;
+    color: white;
+    box-shadow: none;
+    height: 100px;
+}
+
+textarea.form-control:focus{
+    outline: none;
+    background-color: transparent;
+    box-shadow: none;
+    color: white;
+    border-color: white;
+}
+
+.add-cover form fieldset .row div{
+    margin-top: 20px;
+}
+
+#picLabel{
+    margin-top: 15px;
+}
+/**************/
+
+/*Events*/
+.all-events{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    flex-direction: column;
+}
+
+.an-event{
+    width: 70%;
+    height: 600px;
+    overflow: hidden;
+    display: flex;
+    margin-bottom: 2em;
+}
+
+.img-side{
+    width: 60%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 1.5em;
+    border-bottom-left-radius: 1.5em;
+    position: relative;
+}
+
+.slider{
+    font-family: 'Roboto';
+    font-size: 1em;
+}
+
+.img-side img{
+    max-height: 100%;
+    transition: all 2s;
+}
+
+.img-side img:hover{
+    transform: scale(1.1);
+}
+
+.text-side{
+    width: 40%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-top-right-radius: 1.5em;
+    border-bottom-right-radius: 1.5em;
+    font-family: 'Montserrat';
+    color: white;
+    overflow: scroll;
+    scrollbar-width: 0;
+}
+
+.lighter{
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.darker{
+    color: white;
+}
+
+.eHashtags{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2em;
+}
+
+.eName{
+    font-weight: 600;
+    padding-left: 0.5em;
+    padding-top: 0.5em;
+}
+
+.eName:hover{
+    cursor: pointer;
+}
+
+.mar-bot{
+    margin-bottom: 1em;
+}
+
+.eDescription{
+    padding-left: 0.8em;
+    padding-right: 0.8em;
+    margin-bottom: 3em;
+}
+
+.eDate{
+    padding-left: 0.8em;
+    padding-right: 0.8em;
+    margin-bottom: 0.2em;
+}
+
+.eLocation{
+    padding-left: 0.8em;
+    padding-right: 0.8em;
+    margin-bottom: 0.2em;
+}
+
+.eAuthor{
+    padding-left: 0.8em;
+    padding-right: 0.8em;
+    margin-bottom: 2em;
+}
+
+.eHashtag{
+    background-color: white;
+    color: black;
+    margin: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+}
+/*******/
+
+/*feeds*/
+.feed-wrapper-outer{
+    width: 100%;
+    height: 5em;
+    margin-top: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3em;
+}
+
+.feed-wrapper-inner{
+    width: 30%;
+    height: 80%;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1em;
+    font-size: 1.5em;
+    color: white;
+}
+
+.feed-wrapper-inner label{
+    margin-right: 0.5em;
+    margin-left: 0.5em;
+}
+
+.feed-wrapper-inner select{
+    /* border: 1px solid white; */
+    border: none;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    background-color: transparent;
+    color: white;
+    outline: none;
+}
+
+.feed-wrapper-inner select:focus{
+    outline: none;
+}
+
+.feed-wrapper-inner select:hover{
+    cursor: pointer;
+}
+/**********/
+
+/*Profile Image Link and Mail Link in home.php*/
+#profileImageLink{
+    width: 3em;
+    height: 3em;
+    background-color: white;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 1em;
+}
+
+#profileImageLink div img{
+    width: 3em;
+}
+
+#profileImageLink div i{
+    font-size: 1.5em;
+    color: black;
+}
+
+#profileImageLink:hover{
+    animation-name: pulse;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+#mailLink{
+    width: 3em;
+    height: 3em;
+    background-color: white;
+    border-radius: 50%;
+    margin: 1em;
+}
+
+#mailLink:hover{
+    animation-name: pulse;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    background-color: rgba(255, 255, 255, 1);
+}
+/**********/
+
+/*Profile page styling for profile.php*/
+#editSpanShow{
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-outer-wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+}
+
+.profile-inner-wrapper{
+    width: 90%;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 1em;
+}
+
+.profile-image{
+    width: 15em;
+    height: 15em;
+    border-radius: 50%;
+    background-color: white;
+    margin-top: 2em;
+    margin-left: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s;
+    overflow: hidden;
+    position: relative;
+}
+
+.profile-image i{
+    color: rgba(0,0,0,0.5);
+    font-size: 8em;
+    position: relative;
+}
+
+.profile-image img{
+    width: 100%;
+}
+
+.profile-image:hover{
+    background-color: rgba(0,0,0,0.4);
+    cursor: pointer;
+}
+
+.visibiltyHidden{
+    visibility: hidden;
+}
+
+.profile-image span{
+    position: absolute;
+    font-size: 2em;
+    color: white;
+    text-transform: uppercase;
+    font-family: 'Montserrat';
+}
+
+.profile-header-wrapper{
+    display: flex;
+    background: linear-gradient(rgba(0,0,0,0.8) 20%, rgba(0,0,0, 0.1) 100%);
+    border-top-right-radius: 1em;
+    border-top-left-radius: 1em;
+    padding-bottom: 2em;
+    border-bottom: 1px solid rgba(255,255,255,1);
+    /* background-color: red; */
+}
+
+.header-text{
+    margin-left: 3em;
+    margin-top: 2em;
+    padding-left: 2em;
+    padding-right: 2em;
+    color: white;
+    width: 65%;
+}
+
+.header-text p:nth-child(1){
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+
+.upper{
+    text-transform: uppercase;
+    margin-bottom: 0.5em;
+    font-size: 1em !important;
+}
+
+.canEditProfile{
+    width: 100%;
+    border: 1px solid white;
+    margin-bottom: 0em;
+    padding: 0.5em;
+    border-radius: 0.5em;
+}
+
+.canEditProfile:hover{
+    cursor: pointer;
+}
+
+.canEditProfile:focus{
+    outline: none;
+    border: 1px solid white;
+    padding: 0.5em;
+    border-radius: 0.5em;
+}
+
+.header-text p:nth-child(5){
+    padding-top: 2em;
+}
+
+.header-text h1{
+    font-size: 5em;
+    margin-bottom: 0.3em;
+}
+
+.crop-image-tool{
+    background-color: red;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.crop-image-tool-inner-box{
+    width: 70%;
+    height: 60%;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.crop-image-tool-inner-box h2{
+    font-size: 1.5em;
+    margin-top: 1em;
+    color: white;
+    font-weight: 300;
+}
+
+.imagesToShow{
+    height: 90%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.whole-image-preview{
+    width: 60%;
+    height: 95%;
+}
+
+.cropped-image-preview{
+    height: 17em;
+    width: 17em;
+    margin-left: 3em;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.cropper-crop-box, .cropper-view-box {
+    border-radius: 50%; 
+}
+
+.cropper-view-box {
+    box-shadow: 0 0 0 1px #39f;
+    outline: 0;
+}
+
+#cropButton{
+    width: 8%;
+    position: absolute;
+    bottom: 1em;
+    right: 2em;
+}
+
+.whole-image-preview img{
+    max-width: 100%;
+}
+
+.profileX{
+    color: white;
+    margin-top: -0.4em !important;
+}
+
+.inner-friend-box{
+    background: linear-gradient(rgba(0,0,0,0.1) 20%, rgba(0,0,0, 0.8) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.5em;
+    border-radius: 1em;
+    display: flex;
+    align-items: center;
+    color: white;
+    transition: all 200ms;
+    position: relative;
+}
+
+.inner-friend-box:hover{
+    cursor: pointer;
+    transform: translate(0.5em);
+}
+
+.friend-img-side{
+    width: 7em;
+    height: 7em;
+    background-color: white;
+    margin-left: 1em;
+    margin-right: 3em;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    overflow:hidden;
+}
+
+.friend-img-side img{
+    width: 100%;
+}
+
+.friend-img-side i{
+    font-size: 4em;
+}
+
+.friend-box{
+    /* background-color: rgba(0,0,0,0.8); */
+    /* padding-left: 2em; */
+    padding-right: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.noneDisplay{
+    display: none !important;
+}
+
+.blockDisplay{
+    display: flex;
+}
+
+.friend-text-side p{
+    padding: 0;
+    margin: 0;
+    font-size: 0.8em;
+}
+
+
+.additional-info-inner{
+    margin: 2em;
+    color: white;
+}
+
+.additional-info-inner p:nth-child(1){
+    font-size: 3em;
+}
+
+#relationshipProfile{
+    width: 100%;
+    color: white;
+    border: none;
+    background-color: transparent;
+    outline: none;
+}
+
+#relationship:focus{
+    outline: none;
+}
+
+.topMargin{
+    margin-top: 2em;
+}
+
+#emailProfile{
+    width: 100%;
+    color: white;
+    border: 1px solid white;
+    background-color: transparent;
+    outline: none;
+    border-radius: 0.5em !important;
+    padding: 0.5em;
+}
+
+.addErrorAnimation{
+    animation-name: error;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+}
+
+.user-info{
+    margin-left: 2em;
+    margin-top: 3em;
+}
+
+.user-info p:nth-child(1){
+    font-size: 3em;
+    color: white;
+}
+
+.fullWidth{
+    width: 100%;
+}
+
+.no-pointer:hover{
+    cursor: auto !important;
+}
+
+.noFriendsDiv{
+    margin-left: -1em;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.noFriendsPara{
+    font-size: 1.5em !important; 
+    margin: 0; 
+    padding: 1em;
+    border: 1px solid white;
+    border-radius: 1em;
+    margin-bottom: 1em;
+}
+
+.errorEmail{
+    animation-name: error;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-out;
+}
+/******************************/
+
+/***mail page styling***/
+
+.mail-outer-wrapper{
+    width: 100vw;
+    height: calc(100vh - 120px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mail-inner-wrapper{
+    width: 90%;
+    padding: 2em;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 1em;
+}
+
+.noMail{
+    font-size: 3em;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.noMail p{
+    margin: 0;
+    padding: 0;
+    font-weight: 200;
+}
+
+.button-side{
+    position: absolute;
+    right: 10%;
+}
+
+.btn-mail{
+    background-color: white;
+    border: none;
+    padding-left: 1em;
+    padding-right: 1em;
+    border-radius: 1.5em;
+    color: black;
+    margin-left: 1em;
+    font-size: 1.3em;
+    font-family: Roboto;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    transition: all 200ms;
+}
+
+.btn-mail:hover{
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+.reject-mail{
+    background-color: #d9534f;
+    color: white;
+}
+
+.newMail{
+    color: white;
+    font-size: 2em;
+}
+/******************************/
+
+/****CSS FOR displayEvents.php***/
+.event-outer-wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+}
+
+.event-inner-wrapper{
+    width: 90%;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 1em;
+    overflow: hidden;
+}
+
+.event-image-wrapper{
+    width: 100%;
+    position: relative;
+}
+
+.event-image-wrapper img{
+    width: 100%;
+}
+
+.event-gradient{
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0, 0.1) 10%, rgba(0,0,0,0.8) 100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.event-header-wrapper{
+    position: absolute;
+    bottom: 0.7em;
+    right: 3em;
+    color: white;
+    text-align: right;
+}
+
+.event-header-wrapper h1{
+    font-size: 4em;
+}
+
+.event-header-wrapper p{
+    color: rgba(255,255,255,0.7);
+    font-size: 1.2em;
+    margin-bottom: 0.1em;
+}
+
+.event-description{
+    position: absolute;
+    bottom: 0.7em;
+    left: 3em;
+    color: white;
+    max-width: 50%;
+    min-width: 50%;
+}
+
+.event-hashtags{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.single-hash{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.4em;
+    margin-left: 1em;
+    margin-right: 1em;
+    width: 20%;
+    margin-top: 0.5em;
+    border: 1px solid white;
+    border-radius: 1em;
+}
+
+.event-hr{
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    margin: 0;
+    opacity: 1;
+}
+
+.event-like-wrapper{
+    position: absolute;
+    top: 2em;
+    left: 2em;
+    display: flex;
+}
+
+.event-like{
+    width: 4em;
+    height: 4em;
+    background-color: transparent;
+    border: 1px solid #28a745;
+    margin: 0.7em;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.event-dislike{
+    color: white;
+    width: 4em;
+    height: 4em;
+    background-color: transparent;
+    border: 1px solid #dc3545;
+    margin: 0.7em;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.event-like i{
+    color: #28a745;
+}
+
+.event-dislike i{
+    color: #dc3545;
+}
+
+.event-like i, .event-dislike i{
+    font-size: 1.5em;
+}
+
+.event-like:hover{
+    animation-name: pulseGreen;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    cursor: pointer;
+}
+
+.event-dislike:hover{
+    animation-name: pulseRed;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    cursor: pointer;
+}
+
+.liked{
+    background-color: #28a745 !important;
+    color: white !important;
+}
+
+.unliked{
+    background-color: #dc3545 !important;
+    color: white !important;
+}
+
+.make-comment{
+    margin-bottom: 2em;
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+}
+
+.make-comment form{
+    width: 80%;
+}
+
+.write-comment{
+    width: 100%;
+}
+
+.write-comment input{
+    border: 1px solid white;
+    padding: 1em;
+    border-radius: 1em !important;
+    width: 85%;
+    font-family: 'Montserrat';
+    letter-spacing: 0.08em;
+    outline: none;
+}
+
+.write-comment input:focus{
+    outline: none;
+}
+
+.write-comment button{
+    padding: 1em;
+    border-radius: 1em !important;
+    width: 12%;
+    margin-left: 1em;
+}
+
+.commentHeading{
+    color: white;
+    margin-left: 2em;
+    margin-top: 1em;
+}
+
+.comments{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5em;
+}
+
+.comment{
+    background: linear-gradient(rgba(0,0,0,0.1) 20%, rgba(0,0,0, 0.8) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 1em;
+    border-radius: 1em;
+    width: 85%;
+    color: white;
+    display: flex;
+    margin-bottom: 1.5em;
+    /* align-items: center;
+    justify-content: center; */
+}
+
+.user-profile-picture{
+    width: 8em;
+    height: 8em;
+    background-color: white;
+    border-radius: 50%;
+    margin-right: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}
+
+.user-profile-picture{
+    overflow: hidden;
+}
+
+.user-profile-picture i{
+    font-size: 4em;
+}
+
+.user-profile-picture img{
+    width: 100%;
+}
+
+.commentUsername{
+    font-size: 1.2em;
+    text-transform: capitalize;
+}
+
+.commentUsername i{
+    margin-right: 0.7em;
+}
+
+.commentDescription{
+    margin-bottom: 0.3em;
+    font-size: 1.4em;
+}
+
+.commentDate{
+    margin-bottom: 0.3em;
+    text-align: end;
+}
+
+.comment-text-side{
+    width: 100%;
+}
+
+.no-comments-wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.no-comments{
+    font-size: 3em;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    padding: 0.5em;
+    border-radius: 0.5em;
+}
+
+.no-comments p{
+    margin-bottom: 0;
+    padding: 0;
+    font-weight: 200;
+}
+/******************************/
