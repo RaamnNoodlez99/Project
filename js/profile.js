@@ -8,6 +8,8 @@ $(document).ready(() => {
     let cropButton = $('#cropButton');
     let cropper;
 
+    console.log(profileImageDiv);
+
     profileImageDiv.mouseenter(() => {
         editSpan.css("visibility", "visible");
     });
@@ -242,5 +244,45 @@ $(document).ready(() => {
 
             window.location.href = "displayProfile.php?id=" + userID;
         }
+    }
+
+    //adding friends button
+    let addView = false;
+    let addButton = document.getElementById('add-friend-button');
+    let addForm = document.getElementById('friendForm');
+    let exbtn = document.getElementById('exit-friend');
+
+    let addEmail = document.getElementById('email');
+
+    if(addForm.classList.contains('overwriteShow')){
+        addView = true;
+        addForm.classList.remove('overwriteShow');
+    }
+
+    if(addView == false){
+        addForm.classList.remove('show');
+        addForm.classList.add('hide');
+        addView = true;
+    }
+
+    function changeView(){
+        if(addView == false){
+            addForm.classList.remove('show');
+            addForm.classList.add('hide');
+            addView = true;
+        }else{
+            addForm.classList.remove('hide');
+            addForm.classList.add('show');
+            addView = false;
+        }
+    }
+
+    addButton.onclick = function(){
+        changeView();
+        addEmail.value = "";
+    }
+
+    exbtn.onclick = function(){
+        changeView();
     }
 });

@@ -5,138 +5,168 @@
     $profileImageDisplay = 'none';
 
     session_start();
-    include_once 'config.php';
 
-    if(isset($_SESSION['userName'])){
-        $userName = $_SESSION['userName'];
-    }
-
-    if(isset($_SESSION['userSurname'])){
-        $userSurname = $_SESSION['userSurname'];
-    }
-
-    if(isset($_SESSION['profile_image'])){
-        $profile_image = $_SESSION['profile_image'];
-
-        if($profile_image == 'none'){
-            $profile_image = '';
-        }else{
-            $profileImageDisplay = 'block';
-        }
-    }
-
-    //CHECK FOR FRIENDS and ABOUT_ME//
-    $user_id = '';
-    $friendsList = '';
-    $totalFriends = 0;
-    $about_me = '';
-
-    if(isset($_SESSION["user_id"])){
-        $user_id = $_SESSION["user_id"];
-    }
-
-    $sql = "SELECT friends, `about_me` FROM users WHERE `user_id` = ?;";
-    $stmt = mysqli_stmt_init($conn);
-    if(!mysqli_stmt_prepare($stmt, $sql)){
-        header("location: index.php?login=quick&error=stmtfailed");
-        exit();
-    }
-
-    mysqli_stmt_bind_param($stmt, "s", $user_id);
-    mysqli_stmt_execute($stmt);
-
-    $resultData = mysqli_stmt_get_result($stmt);
-
-    if($row = mysqli_fetch_assoc($resultData)){
-        $friendsList = $row["friends"];
-        $about_me = $row["about_me"];
+    if(!isset($_SESSION['userEmail'])){
+        header("location: index.php?error=loginFirst");
     }else{
-        header("location: profile.php?error=sqlFail");
-        exit();
-    }
-    mysqli_stmt_close($stmt);
-    //end sql
-
-    if($friendsList != 'none'){
-        $arr = str_split($friendsList);
-    }
-
-    foreach($arr as $element){
-        if($element != " "){
-            $totalFriends++;
+        if(isset($_SESSION['userName'])){
+            $userName = $_SESSION['userName'];
         }
-    }
-
-
-
-
-    /** PROFILE PICTURE and BIRTHDAY and WORK**/
-    $profilePictureURL = '';
-    $profilePictureDisplay = 'none';
-    $defaultProfilePicture = 'block';
-
-    $email = '';
-    $userID = '';
-
-    $birthday = '';
-    $work = '';
-
-    if(isset($_SESSION['userEmail'])){
-        $email = $_SESSION['userEmail'];
-    }
-    //GET USER ID//
-    $sql = "SELECT * FROM users WHERE email = ?;";
-    $stmt = mysqli_stmt_init($conn);
-    if(!mysqli_stmt_prepare($stmt, $sql)){
-        header("location: index.php?login=quick&error=stmtfailed");
-        exit();
-    }
-
-    mysqli_stmt_bind_param($stmt, "s", $email);
-    mysqli_stmt_execute($stmt);
-
-    $resultData = mysqli_stmt_get_result($stmt);
-
-    if($row = mysqli_fetch_assoc($resultData)){
-        $userID = $row['user_id'];
-        $birthday = $row['birthday'];
-        $work = $row['work'];
-    }else{
-        // header("location: home.php?error=nosession");
-        exit();
-    }
-    mysqli_stmt_close($stmt);
-    //end sql//
-
-    // GET USER PROFILE PICTURE//
-    $sql = "SELECT profile_image FROM users WHERE `user_id` = ?;";
-    $stmt = mysqli_stmt_init($conn);
-    if(!mysqli_stmt_prepare($stmt, $sql)){
-        header("location: index.php?login=quick&error=stmtfailed");
-        exit();
-    }
-
-    mysqli_stmt_bind_param($stmt, "s", $userID);
-    mysqli_stmt_execute($stmt);
-
-    $resultData = mysqli_stmt_get_result($stmt);
     
-    if($row = mysqli_fetch_assoc($resultData)){
-        $profilePictureURL = $row['profile_image'];
-    }else{
-        // header("location: home.php?error=nosession");
-        exit();
-    }
-    mysqli_stmt_close($stmt);
-
-    if($profilePictureURL == 'none'){
+        if(isset($_SESSION['userSurname'])){
+            $userSurname = $_SESSION['userSurname'];
+        }
+    
+        if(isset($_SESSION['profile_image'])){
+            $profile_image = $_SESSION['profile_image'];
+    
+            if($profile_image == 'none'){
+                $profile_image = '';
+            }else{
+                $profileImageDisplay = 'block';
+            }
+        }
+    
+        include_once 'config.php';
+    
+        //CHECK FOR FRIENDS and ABOUT_ME//
+        $user_id = '';
+        $friendsList = '';
+        $totalFriends = 0;
+        $about_me = '';
+    
+        if(isset($_SESSION["user_id"])){
+            $user_id = $_SESSION["user_id"];
+        }
+    
+        $sql = "SELECT friends, `about_me` FROM users WHERE `user_id` = ?;";
+        $stmt = mysqli_stmt_init($conn);
+        if(!mysqli_stmt_prepare($stmt, $sql)){
+            header("location: index.php?login=quick&error=stmtfailed");
+            exit();
+        }
+    
+        mysqli_stmt_bind_param($stmt, "s", $user_id);
+        mysqli_stmt_execute($stmt);
+    
+        $resultData = mysqli_stmt_get_result($stmt);
+    
+        if($row = mysqli_fetch_assoc($resultData)){
+            $friendsList = $row["friends"];
+            $about_me = $row["about_me"];
+        }else{
+            header("location: profile.php?error=sqlFail");
+            exit();
+        }
+        mysqli_stmt_close($stmt);
+        //end sql
+    
+        if($friendsList != 'none'){
+            $arr = str_split($friendsList);
+        }
+    
+        foreach($arr as $element){
+            if($element != " "){
+                $totalFriends++;
+            }
+        }
+    
+    
+    
+    
+        /** PROFILE PICTURE and BIRTHDAY and WORK**/
         $profilePictureURL = '';
-    }else{
-        $defaultProfilePicture = 'none';
-        $profilePictureDisplay = 'block';
+        $profilePictureDisplay = 'none';
+        $defaultProfilePicture = 'block';
+    
+        $email = '';
+        $userID = '';
+    
+        $birthday = '';
+        $work = '';
+    
+        if(isset($_SESSION['userEmail'])){
+            $email = $_SESSION['userEmail'];
+        }
+        //GET USER ID//
+        $sql = "SELECT * FROM users WHERE email = ?;";
+        $stmt = mysqli_stmt_init($conn);
+        if(!mysqli_stmt_prepare($stmt, $sql)){
+            header("location: index.php?login=quick&error=stmtfailed");
+            exit();
+        }
+    
+        mysqli_stmt_bind_param($stmt, "s", $email);
+        mysqli_stmt_execute($stmt);
+    
+        $resultData = mysqli_stmt_get_result($stmt);
+    
+        if($row = mysqli_fetch_assoc($resultData)){
+            $userID = $row['user_id'];
+            $birthday = $row['birthday'];
+            $work = $row['work'];
+        }else{
+            // header("location: home.php?error=nosession");
+            exit();
+        }
+        mysqli_stmt_close($stmt);
+        //end sql//
+    
+        // GET USER PROFILE PICTURE//
+        $sql = "SELECT profile_image FROM users WHERE `user_id` = ?;";
+        $stmt = mysqli_stmt_init($conn);
+        if(!mysqli_stmt_prepare($stmt, $sql)){
+            header("location: index.php?login=quick&error=stmtfailed");
+            exit();
+        }
+    
+        mysqli_stmt_bind_param($stmt, "s", $userID);
+        mysqli_stmt_execute($stmt);
+    
+        $resultData = mysqli_stmt_get_result($stmt);
+        
+        if($row = mysqli_fetch_assoc($resultData)){
+            $profilePictureURL = $row['profile_image'];
+        }else{
+            // header("location: home.php?error=nosession");
+            exit();
+        }
+        mysqli_stmt_close($stmt);
+    
+        if($profilePictureURL == 'none'){
+            $profilePictureURL = '';
+        }else{
+            $defaultProfilePicture = 'none';
+            $profilePictureDisplay = 'block';
+        }
+        // end sql
+        /** PROFILE PICTURE END **/
+
+
+        //FRIEND REQUEST RESPONSE MESSAGES:
+        $reShowForm = '';
+
+        if(isset($_GET["error"]) || isset($_GET["response"])){
+            if($_GET["error"] == "selfRequest"){
+                $add_css = 'no-error added_animation';
+                $no_error_text = 'You cannot friend yourself';
+                $reShowForm = 'overwriteShow';
+            }else if($_GET["error"] == "inboxFull"){
+                $add_css = 'no-error added_animation';
+                $no_error_text = 'Your request has already been sent';
+                $reShowForm = 'overwriteShow';
+            }else if($_GET["error"] == "noEmail"){
+                $add_css = 'no-error added_animation';
+                $no_error_text = 'User does not exist';
+                $reShowForm = 'overwriteShow';
+            }else if($_GET["response"] == "sent"){
+                $add_css = 'no-error added_animation';
+                $no_error_text = 'Request has been sent';
+            }
+        }
+
     }
-    // end sql
-    /** PROFILE PICTURE END **/
+
 ?>
 
 <!DOCTYPE html>
@@ -184,6 +214,8 @@
             </div>
         </div>
 
+        <div class="<?php echo $add_css?>"><span class="no_error_text"><?php echo $no_error_text?></span></div>
+
         <div class="profile-outer-wrapper">
             <div class="profile-inner-wrapper">
 
@@ -211,6 +243,13 @@
                         </p>
                         <p><?php echo $totalFriends;?> Followers</p>
                     </div>
+
+                    <div class="add-friend-div tooltips" id="add-friend-button">
+                        <span class="tooltipstext">Add friend!</span>
+                        <i class="fa-solid fa-user-plus"></i>
+                    </div>
+
+
                 </div>
 
                 <div class="additional-info-outer">
@@ -408,7 +447,31 @@
               </div>
         </div>
 
-        
+        <div id="friendForm" class="add-event-form <?php echo $reShowForm ?>">
+            <div class="add-cover" style="height: 30%">
+                <h1>Add a new friend</h1>
+                <i class="fa-solid fa-xmark" id="exit-friend"></i>
+
+                <form action="sendFriendRequest.php" method="POST" enctype="multipart/form-data">
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label for="email">Friends' email address<sup>*</sup></label>
+                                    <input type="email" id="email" class="form-control" placeholder="john.doe@gmail.com" name="friendEmail">
+                                    <span class="formspan" id="emailSpan"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col-12" style="margin-top: 0.3em">
+                                    <button name="addSubmit" type="submit" id="addSubmit" class="btn">Add Friend</button>
+                                    <span class="formspan" id="errorSpan"></span>
+                                </div>
+                            </div>
+                        </fieldset>
+                </form>
+            </div>
+        </div>
     </div>
 
     <script src="node_modules/cropperjs/dist/cropper.js"></script>

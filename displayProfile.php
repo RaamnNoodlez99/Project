@@ -2,6 +2,10 @@
     include_once 'config.php';
     session_start();
 
+    if(!isset($_SESSION['userEmail'])){
+        header("location: index.php?error=loginFirst");
+    }
+
     $userID = '';
     $userName = '';
     $userSurname = '';
@@ -289,7 +293,7 @@
                         if($userFriends == 'none'){
                             echo '
                             <div class="noFriendsDiv">
-                                <p class="noFriendsPara">No friends currently. Add more friends!</p>
+                                <p class="noFriendsPara">User has no friends</p>
                             </div>
                             ';
                         }

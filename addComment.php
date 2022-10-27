@@ -2,6 +2,10 @@
     include_once 'config.php';
     session_start();
 
+    if(!isset($_SESSION['userEmail'])){
+        header("location: index.php?error=loginFirst");
+    }
+
     if(isset($_POST['commentSubmit'])){
         
         $event_id = '';

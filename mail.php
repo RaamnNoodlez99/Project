@@ -2,6 +2,10 @@
     session_start();
     include_once 'config.php';
 
+    if(!isset($_SESSION['userEmail'])){
+        header("location: index.php?error=loginFirst");
+    }
+
     $profilePictureURL = '';
     $profilePictureDisplay = 'none';
     $defaultProfilePicture = 'block';

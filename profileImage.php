@@ -1,4 +1,8 @@
 <?php
+    if(!isset($_SESSION['userEmail'])){
+        header("location: index.php?error=loginFirst");
+    }
+    
     $folderPath = 'images/profiles/';
 
     $image_parts = explode(";base64,", $_POST['cropImage']);

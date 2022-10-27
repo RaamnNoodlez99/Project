@@ -1,6 +1,10 @@
 <?php
     session_start();
 
+    if(!isset($_SESSION['userEmail'])){
+        header("location: index.php?error=loginFirst");
+    }
+
     $feedTypeText = '';
 
     $feedTypeText = $_POST["feedTypeText"];

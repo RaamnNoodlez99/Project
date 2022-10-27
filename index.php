@@ -66,6 +66,9 @@
                 }
                 $view = 'login';
             }
+        }else if($_GET['error'] == 'loginFirst'){
+            $add_css = 'no-error added_animation';
+            $no_error_text = 'You are not logged in';
         }else{
             if(preg_match("/emptyname/", $str)){
                 $name_error = 'Name is required';
