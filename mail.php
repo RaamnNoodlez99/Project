@@ -75,6 +75,15 @@
         $requestsArr = str_split($requests);
     }
     // end sql
+
+
+    //FRIEND REQUEST RESPONSE MESSAGES:
+    if(isset($_GET["friend"])){
+        if($_GET["friend"] == "added"){
+            $add_css = 'no-error added_animation';
+            $no_error_text = 'New friend added!';
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -121,6 +130,8 @@
                 </div>
             </div>
         </div>
+
+        <div class="<?php echo $add_css?>"><span class="no_error_text"><?php echo $no_error_text?></span></div>
 
         <div class="mail-outer-wrapper">
             <div class="mail-inner-wrapper">
@@ -184,8 +195,8 @@
                                             <p>Mutual friends: John</p>
                                         </div>
                                         <div class="button-side">
-                                            <button class="btn-mail">Accept</button>
-                                            <button class="btn-mail reject-mail">Reject</button>
+                                            <button class="btn-mail accBtnClass" id="accBtn' . $element . '">Accept</button>
+                                            <button class="btn-mail reject-mail rejBtnClass" id="rejBtn' . $element . '">Reject</button>
                                         </div>
                                     </div>
                                 </div>';

@@ -60,7 +60,6 @@
                 exit();
             }
             mysqli_stmt_close($stmt);
-
             //end sql
 
             //APPEND THE NEW REQUEST
