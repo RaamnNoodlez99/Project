@@ -206,7 +206,7 @@
                     </a>
                     <a href="profile.php" id="profileImageLink">
                         <div title="Profile">
-                            <img src="<?php echo $profilePictureURL;?>" alt="profile picture" style="display:<?php echo $profilePictureDisplay;?>"/>
+                            <img src="<?php echo $profilePictureURL;?>" alt="" style="display:<?php echo $profilePictureDisplay;?>"/>
                             <i class="fa-solid fa-user" style="display:<?php echo $defaultProfilePicture?>"></i>
                         </div>
                     </a>

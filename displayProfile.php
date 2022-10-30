@@ -19,6 +19,8 @@
     $userTotalFriends = 0;
     $userFriendsArr = '';
 
+    $userMyFriend = false;
+
     $userProfilePictureDisplay = 'none';
     $userDefaultProfilePicture = 'block';
 
@@ -110,6 +112,9 @@
     }
     mysqli_stmt_close($stmt);
 
+    $profilePictureDisplay = 'none';
+    $defaultProfilePicture = 'block';
+
     if($profilePictureURL == 'none'){
         $profilePictureURL = '';
     }else{
@@ -119,6 +124,14 @@
     // end sql
     /** PROFILE PICTURE END **/
 
+
+    foreach($userFriendsArr as $element){
+        if($element != " "){
+            if($element == $myUserID){
+                $userMyFriend = true;
+            }
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -157,7 +170,7 @@
                     </a>
                     <a href="profile.php" id="profileImageLink">
                         <div title="Profile">
-                            <img src="<?php echo $profilePictureURL;?>" alt="profile picture" style="display:<?php echo $profilePictureDisplay;?>"/>
+                            <img src="<?php echo $profilePictureURL;?>" alt="" style="display:<?php echo $profilePictureDisplay;?>"/>
                             <i class="fa-solid fa-user" style="display:<?php echo $defaultProfilePicture?>"></i>
                         </div>
                     </a>
@@ -186,6 +199,18 @@
                         <p contenteditable="false" class="canEditProfile no-pointer" id="aboutMe"><?php echo $userAbout;?></p>
                         <p><?php echo $userTotalFriends;?> Followers</p>
                     </div>
+
+                    <form action="message.php" method="GET">
+                    <?php 
+                        if($userMyFriend){
+                            echo '<button class="add-friend-div tooltips" id="msg-friend-btn" style="border: none" name="msg-friend">
+                                        <span class="tooltipstext">Message friend</span>
+                                        <i class="fa-solid fa-message"></i>
+                                    </button>
+                                    <input type="hidden" value="' . $userID . '" name="friend-id"/>';
+                        }
+                    ?>
+                    </form>
                 </div>
 
                 <div class="additional-info-outer">

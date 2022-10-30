@@ -98,6 +98,61 @@
         //end UPDATE
 
 
+        //NOW WE NEED TO APPEND MY CURR USER ID TO NEW FIRENDS' ID
+        $sendersFriends;
+        $sendersFriendsToWrite;
+        $sendersCount = 0;
+
+        $sql = "SELECT * FROM users WHERE `user_id` = ?;";
+         $stmt = mysqli_stmt_init($conn);
+         if(!mysqli_stmt_prepare($stmt, $sql)){
+             header("location: index.php?login=quick&error=stmtfailed");
+             exit();
+         }
+     
+         mysqli_stmt_bind_param($stmt, "s", $requestId);
+         mysqli_stmt_execute($stmt);
+     
+         $resultData = mysqli_stmt_get_result($stmt);
+     
+         if($row = mysqli_fetch_assoc($resultData)){
+
+            $sendersFriends = explode(" ", $row["friends"]);
+
+            foreach($sendersFriends as $element){
+                $sendersCount++;
+            }
+
+         }else{
+             header("location: home.php?error=stmtFailed");
+             exit();
+         }
+         mysqli_stmt_close($stmt);
+         //end sql
+
+        if($sendersCount != 1){
+            foreach($sendersFriends as $element){
+                $sendersFriendsToWrite .= $element . ' ';
+            }
+            $sendersFriendsToWrite .= $userID;
+        }else{
+            $sendersFriendsToWrite = $userID;
+        }
+
+        $sql = "UPDATE `users` SET `friends`= ? WHERE `user_id`= ?";
+        $stmt = mysqli_stmt_init($conn);
+
+        if(!mysqli_stmt_prepare($stmt, $sql)){
+            header("location: index.php?login=quick&error=stmtfailed");
+            exit();
+        }
+
+        mysqli_stmt_bind_param($stmt, "ss", $sendersFriendsToWrite, $requestId);
+
+        mysqli_stmt_execute($stmt);
+
+
+
         echo json_encode(array('success'=>'true'));
     }else{
         echo json_encode(array('success'=>'false'));

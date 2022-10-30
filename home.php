@@ -7,6 +7,7 @@
     }
 
     include_once 'config.php';
+    
     $email = '';
     $userID = '';
     if(isset($_SESSION['userEmail'])){
@@ -393,7 +394,7 @@
                                     <div class="edit-event-button" id="edit-' . $tempEventID . '" style="display:' . $showEdit . '">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                     </div>
-                                    <h1 class="eName" id="eName-' . $tempEventID . '">' . $row['name'] . '</h1>
+                                    <h1 class="eName tooltips" id="eName-' . $tempEventID . '">' . $row['name'] . '<span class="tooltipstext">Open Event</span></h1>
                                     <hr class="mar-bot">
                                     <p class="eDescription" id="eDescription-' . $tempEventID . '">' . $row['description'] . '</p>
                                     <p class="lighter eDate">Creation date: <span class="darker" id="eDate-' . $tempEventID . '">' . $row['date'] . '</span></p>

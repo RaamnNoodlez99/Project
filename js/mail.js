@@ -59,4 +59,25 @@ $(document).ready(() => {
             event.stopPropagation(); 
         }
     }
+
+    for(let i=0; i<rejBtns.length; i++){
+        let rejBtn = rejBtns[i];
+
+        rejBtn.onclick = (event) => {
+            let requestId = rejBtn.id;
+            requestId = requestId.replace( /^\D+/g, '');
+
+            $.ajax({
+                type: 'post',
+                dataType: 'json',
+                url: 'userInfo/rejectReq.php',
+                data: {"requestId": requestId},
+                success:function(data){
+                    window.location.search = '?friend=rejected';
+                }
+            })
+
+            event.stopPropagation(); 
+        }
+    }
 });
